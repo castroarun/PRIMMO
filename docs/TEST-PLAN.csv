@@ -1,0 +1,6 @@
+Test ID,Feature,Test Case,Steps,Expected Result,Priority,Status,Notes
+TC-001,Authentication,User can sign up with email,1. Navigate to signup 2. Enter email/password 3. Submit,Account created and user logged in,High,Pending,
+TC-002,Authentication,User can log in with email,1. Navigate to login 2. Enter credentials 3. Submit,User logged in and redirected to home,High,Pending,
+TC-003,Authentication,User can log out,1. Click logout button,User logged out and redirected to login,High,Pending,
+TC-004,Core Feature 1,[Test case description],[Steps],Expected result,Medium,Pending,
+TC-005,Core Feature 2,[Test case description],[Steps],Expected result,Medium,Pending,
