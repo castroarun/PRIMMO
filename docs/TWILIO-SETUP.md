@@ -354,6 +354,139 @@ VAPI_WEBHOOK_PATH=/webhook/vapi
 
 ---
 
+## Scheduling Outbound Calls & Messages
+
+PRIMMO proactively reaches out to users for check-ins, motivation, and progress reviews.
+
+### Outbound Call Types
+
+| Call Type | Frequency | Duration | Cost/Call |
+|-----------|-----------|----------|-----------|
+| Weekly Check-in | 1x/week | 3-5 min | $0.21-0.35 |
+| Progress Review | 2x/month | 5-7 min | $0.35-0.49 |
+| Motivation Call | As needed | 2-3 min | $0.14-0.21 |
+| Missed Workout Follow-up | As needed | 2-3 min | $0.14-0.21 |
+
+### Outbound WhatsApp Types
+
+| Message Type | Frequency | Cost/Msg |
+|--------------|-----------|----------|
+| Workout Reminder | Daily | $0.0099 |
+| Weekly Summary | 1x/week | $0.0099 |
+| Motivation Message | 2-3x/week | $0.0099 |
+| Progress Milestone | As achieved | $0.0099 |
+
+### Vapi Outbound Call API
+
+To initiate an outbound call programmatically:
+
+```bash
+curl -X POST https://api.vapi.ai/call/phone \
+  -H "Authorization: Bearer YOUR_VAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistantId": "asst_xxxxxxxxxx",
+    "customer": {
+      "number": "+919876543210"
+    },
+    "phoneNumberId": "pn_xxxxxxxxxx"
+  }'
+```
+
+### n8n Scheduling Workflow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                  OUTBOUND SCHEDULING WORKFLOW                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  [Cron Trigger: Every day at 9 AM]                              │
+│         ↓                                                       │
+│  [Supabase: Get scheduled_calls WHERE status='scheduled'        │
+│             AND scheduled_at <= NOW()]                          │
+│         ↓                                                       │
+│  [Loop: For each scheduled call]                                │
+│         ↓                                                       │
+│  [Switch: call_type]                                            │
+│    ├── weekly_checkin → [Set: Checkin prompt]                   │
+│    ├── progress_review → [Set: Review prompt]                   │
+│    ├── motivation → [Set: Motivation prompt]                    │
+│    └── custom → [Set: Custom prompt]                            │
+│         ↓                                                       │
+│  [HTTP Request: Vapi Outbound Call API]                         │
+│         ↓                                                       │
+│  [Supabase: Update status='in_progress']                        │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Vapi Outbound Call with Custom Context
+
+```json
+{
+  "assistantId": "asst_xxxxxxxxxx",
+  "customer": {
+    "number": "+919876543210"
+  },
+  "phoneNumberId": "pn_xxxxxxxxxx",
+  "assistantOverrides": {
+    "variableValues": {
+      "userName": "Arun",
+      "callType": "weekly_checkin",
+      "workoutsThisWeek": 4,
+      "missedDays": ["Tuesday"],
+      "personalRecord": "Bench Press: 80kg"
+    },
+    "systemPrompt": "You are calling {{userName}} for their weekly check-in. They completed {{workoutsThisWeek}} workouts this week. They missed {{missedDays}}. Celebrate their progress and ask how they're feeling. Mention their recent PR: {{personalRecord}}."
+  }
+}
+```
+
+### Outbound WhatsApp (Scheduled)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                OUTBOUND WHATSAPP WORKFLOW                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  [Cron Trigger: Every day at 7 AM]                              │
+│         ↓                                                       │
+│  [Supabase: Get users with scheduled reminders]                 │
+│         ↓                                                       │
+│  [Loop: For each user]                                          │
+│         ↓                                                       │
+│  [Supabase: Get user's workout for today]                       │
+│         ↓                                                       │
+│  [HTTP Request: Twilio Send WhatsApp Template]                  │
+│    Template: workout_reminder                                   │
+│    Variables: [userName, workoutType]                           │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Twilio WhatsApp Template Message
+
+```bash
+curl -X POST https://api.twilio.com/2010-04-01/Accounts/{AccountSid}/Messages.json \
+  -u "{AccountSid}:{AuthToken}" \
+  -d "From=whatsapp:+14155238886" \
+  -d "To=whatsapp:+919876543210" \
+  -d "ContentSid=HXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+  -d "ContentVariables={\"1\":\"Arun\",\"2\":\"Upper Body\"}"
+```
+
+### Monthly Outbound Cost Projection (100 Users)
+
+| Outbound Type | Frequency | Qty/Month | Cost |
+|---------------|-----------|-----------|------|
+| Weekly Check-in Calls | 1x/week | 400 calls × 4 min | $112 |
+| Progress Review Calls | 2x/month | 200 calls × 6 min | $84 |
+| Daily WhatsApp Reminders | Daily | 3,000 msgs | $30 |
+| Weekly Summary WhatsApp | 1x/week | 400 msgs | $4 |
+| **Total Outbound** | | | **$230/month** |
+
+---
+
 ## Cost Optimization Tips
 
 1. **Encourage user-initiated conversations** - $0.005 vs $0.01-0.06
@@ -362,3 +495,5 @@ VAPI_WEBHOOK_PATH=/webhook/vapi
 4. **Use Tier 1-3 responses** - Avoid Claude API costs for common questions
 5. **Keep voice responses short** - Charge is per minute
 6. **Use Haiku for voice** - Faster = shorter calls = lower cost
+7. **Schedule calls during off-peak hours** - Higher answer rates = fewer retries
+8. **Use WhatsApp templates wisely** - Utility ($0.01) vs Marketing ($0.06)
