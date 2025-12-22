@@ -1,77 +1,122 @@
 <mxfile host="app.diagrams.net" modified="2024-12-22T00:00:00.000Z" agent="Claude" version="22.1.0" type="device">
   <diagram id="primmo-arch" name="PRIMMO Architecture">
-    <mxGraphModel dx="2074" dy="1156" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="2074" dy="1156" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
         <mxCell id="title" value="PRIMMO - AI Strength Coach Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
-          <mxGeometry x="500" y="20" width="600" height="40" as="geometry"/>
+          <mxGeometry x="550" y="20" width="600" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="user-layer" value="USER CHANNELS" style="swimlane;horizontal=1;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="80" width="360" height="200" as="geometry"/>
+          <mxGeometry x="40" y="80" width="500" height="280" as="geometry"/>
         </mxCell>
         <mxCell id="user" value="Customer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="user-layer">
-          <mxGeometry x="30" y="60" width="40" height="80" as="geometry"/>
+          <mxGeometry x="30" y="90" width="40" height="80" as="geometry"/>
         </mxCell>
-        <mxCell id="whatsapp" value="WhatsApp&#xa;(Twilio)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#25D366;strokeColor=#128C7E;fontColor=#ffffff;fontStyle=1;fontSize=12;" vertex="1" parent="user-layer">
-          <mxGeometry x="120" y="50" width="100" height="50" as="geometry"/>
+        <mxCell id="wa-path-label" value="PATH 1: WhatsApp" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#128C7E;" vertex="1" parent="user-layer">
+          <mxGeometry x="100" y="40" width="120" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="voice" value="Voice Call&#xa;(Vapi.ai + Twilio)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontStyle=1;fontSize=12;" vertex="1" parent="user-layer">
-          <mxGeometry x="120" y="120" width="100" height="50" as="geometry"/>
+        <mxCell id="voice-path-label" value="PATH 2: Voice" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;fontColor=#2171B5;" vertex="1" parent="user-layer">
+          <mxGeometry x="100" y="150" width="120" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="webhook-wa" value="Webhook" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="user-layer">
-          <mxGeometry x="250" y="55" width="70" height="40" as="geometry"/>
+        <mxCell id="whatsapp" value="WhatsApp&#xa;Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#25D366;strokeColor=#128C7E;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="user-layer">
+          <mxGeometry x="100" y="65" width="80" height="45" as="geometry"/>
         </mxCell>
-        <mxCell id="webhook-voice" value="Webhook" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="user-layer">
-          <mxGeometry x="250" y="125" width="70" height="40" as="geometry"/>
+        <mxCell id="twilio-wa" value="Twilio&#xa;WhatsApp API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F22F46;strokeColor=#C22030;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="user-layer">
+          <mxGeometry x="210" y="65" width="90" height="45" as="geometry"/>
         </mxCell>
-        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="user-layer" source="user" target="whatsapp">
+        <mxCell id="webhook-wa" value="Webhook 1&#xa;POST /whatsapp&#xa;(Twilio calls this)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;fontStyle=1;" vertex="1" parent="user-layer">
+          <mxGeometry x="330" y="55" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="voice-call" value="Voice&#xa;Call" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="user-layer">
+          <mxGeometry x="100" y="175" width="80" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="twilio-voice" value="Twilio&#xa;Voice&#xa;(Telephony)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F22F46;strokeColor=#C22030;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="user-layer">
+          <mxGeometry x="210" y="170" width="90" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="vapi" value="Vapi.ai&#xa;(STT/TTS/AI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6B5CE7;strokeColor=#5648C7;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="user-layer">
+          <mxGeometry x="210" y="235" width="90" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="webhook-voice" value="Webhook 2&#xa;POST /vapi&#xa;(Vapi calls this)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;fontStyle=1;" vertex="1" parent="user-layer">
+          <mxGeometry x="330" y="195" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-u-wa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#128C7E;strokeWidth=2;" edge="1" parent="user-layer" source="user" target="whatsapp">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="user-layer" source="user" target="voice">
+        <mxCell id="arrow-u-voice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2171B5;strokeWidth=2;" edge="1" parent="user-layer" source="user" target="voice-call">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="user-layer" source="whatsapp" target="webhook-wa">
+        <mxCell id="arrow-wa-twilio" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#128C7E;strokeWidth=2;" edge="1" parent="user-layer" source="whatsapp" target="twilio-wa">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="user-layer" source="voice" target="webhook-voice">
+        <mxCell id="arrow-twilio-webhook" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#128C7E;strokeWidth=2;" edge="1" parent="user-layer" source="twilio-wa" target="webhook-wa">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="n8n-layer" value="n8n ORCHESTRATION LAYER" style="swimlane;horizontal=1;startSize=30;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=14;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="440" y="80" width="720" height="400" as="geometry"/>
+        <mxCell id="arrow-voice-twilio" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2171B5;strokeWidth=2;" edge="1" parent="user-layer" source="voice-call" target="twilio-voice">
+          <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="webhook-handler" value="Webhook&#xa;Handler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="30" y="50" width="80" height="50" as="geometry"/>
+        <mxCell id="arrow-twilio-vapi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2171B5;strokeWidth=2;" edge="1" parent="user-layer" source="twilio-voice" target="vapi">
+          <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="router" value="Message&#xa;Router" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="140" y="40" width="80" height="70" as="geometry"/>
+        <mxCell id="arrow-vapi-webhook" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2171B5;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="user-layer" source="vapi" target="webhook-voice">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="n8n-layer" value="n8n ORCHESTRATION LAYER (We Build This)" style="swimlane;horizontal=1;startSize=30;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=14;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="80" width="720" height="400" as="geometry"/>
+        </mxCell>
+        <mxCell id="webhook-handler" value="WEBHOOK HANDLER" style="swimlane;horizontal=1;startSize=20;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=11;rounded=1;" vertex="1" parent="n8n-layer">
+          <mxGeometry x="20" y="40" width="160" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-receive" value="Receive&#xa;Request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="webhook-handler">
+          <mxGeometry x="10" y="30" width="60" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-normalize" value="Normalize&#xa;Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" vertex="1" parent="webhook-handler">
+          <mxGeometry x="85" y="30" width="60" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-identify" value="Identify&#xa;Channel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" vertex="1" parent="webhook-handler">
+          <mxGeometry x="10" y="85" width="60" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-user" value="Get/Create&#xa;User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="webhook-handler">
+          <mxGeometry x="85" y="85" width="60" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="webhook-handler" source="wh-receive" target="wh-normalize">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="webhook-handler" source="wh-normalize" target="wh-identify">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh-arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="webhook-handler" source="wh-identify" target="wh-user">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="router" value="Intent&#xa;Router" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="n8n-layer">
+          <mxGeometry x="200" y="75" width="70" height="60" as="geometry"/>
         </mxCell>
         <mxCell id="tier-system" value="4-TIER RESPONSE SYSTEM" style="swimlane;horizontal=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;rounded=1;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="250" y="35" width="440" height="160" as="geometry"/>
+          <mxGeometry x="290" y="40" width="400" height="150" as="geometry"/>
         </mxCell>
         <mxCell id="tier1" value="TIER 1&#xa;FAQ Match&#xa;(Airtable)&#xa;$0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=10;verticalAlign=middle;" vertex="1" parent="tier-system">
-          <mxGeometry x="15" y="35" width="90" height="110" as="geometry"/>
+          <mxGeometry x="15" y="35" width="85" height="100" as="geometry"/>
         </mxCell>
-        <mxCell id="tier2" value="TIER 2&#xa;Semantic&#xa;Search&#xa;(Embeddings)&#xa;$0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=10;verticalAlign=middle;" vertex="1" parent="tier-system">
-          <mxGeometry x="120" y="35" width="90" height="110" as="geometry"/>
+        <mxCell id="tier2" value="TIER 2&#xa;Semantic&#xa;Search&#xa;$0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=10;verticalAlign=middle;" vertex="1" parent="tier-system">
+          <mxGeometry x="110" y="35" width="85" height="100" as="geometry"/>
         </mxCell>
-        <mxCell id="tier3" value="TIER 3&#xa;Calculated&#xa;(BMR, TDEE,&#xa;1RM, etc.)&#xa;$0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=10;verticalAlign=middle;" vertex="1" parent="tier-system">
-          <mxGeometry x="225" y="35" width="90" height="110" as="geometry"/>
+        <mxCell id="tier3" value="TIER 3&#xa;Calculated&#xa;(Formulas)&#xa;$0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=10;verticalAlign=middle;" vertex="1" parent="tier-system">
+          <mxGeometry x="205" y="35" width="85" height="100" as="geometry"/>
         </mxCell>
         <mxCell id="tier4" value="TIER 4&#xa;Claude API&#xa;(Complex)&#xa;$$$" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=10;verticalAlign=middle;" vertex="1" parent="tier-system">
-          <mxGeometry x="330" y="35" width="90" height="110" as="geometry"/>
+          <mxGeometry x="300" y="35" width="85" height="100" as="geometry"/>
         </mxCell>
-        <mxCell id="tier-arrow1" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#666666;" edge="1" parent="tier-system" source="tier1" target="tier2">
+        <mxCell id="tier-arrow1" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=8;fontColor=#666666;" edge="1" parent="tier-system" source="tier1" target="tier2">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="tier-arrow2" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#666666;" edge="1" parent="tier-system" source="tier2" target="tier3">
+        <mxCell id="tier-arrow2" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=8;fontColor=#666666;" edge="1" parent="tier-system" source="tier2" target="tier3">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="tier-arrow3" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#666666;" edge="1" parent="tier-system" source="tier3" target="tier4">
+        <mxCell id="tier-arrow3" value="miss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=8;fontColor=#666666;" edge="1" parent="tier-system" source="tier3" target="tier4">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="context-enhancer" value="Context&#xa;Enhancer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="140" y="140" width="80" height="50" as="geometry"/>
+        <mxCell id="context-enhancer" value="Context&#xa;Enhancer&#xa;(Add REPPIT data)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;" vertex="1" parent="n8n-layer">
+          <mxGeometry x="195" y="155" width="80" height="55" as="geometry"/>
         </mxCell>
         <mxCell id="formatter" value="Response&#xa;Formatter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="n8n-layer">
           <mxGeometry x="350" y="220" width="80" height="50" as="geometry"/>
@@ -79,14 +124,14 @@
         <mxCell id="sender" value="Channel&#xa;Router" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="n8n-layer">
           <mxGeometry x="460" y="215" width="80" height="60" as="geometry"/>
         </mxCell>
-        <mxCell id="send-wa" value="Send&#xa;WhatsApp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#25D366;strokeColor=#128C7E;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="570" y="200" width="70" height="40" as="geometry"/>
+        <mxCell id="send-wa" value="Twilio API&#xa;Send WhatsApp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#25D366;strokeColor=#128C7E;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="n8n-layer">
+          <mxGeometry x="570" y="195" width="90" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="send-voice" value="Send&#xa;Voice" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="570" y="250" width="70" height="40" as="geometry"/>
+        <mxCell id="send-voice" value="Return to&#xa;Vapi (JSON)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontStyle=1;fontSize=10;" vertex="1" parent="n8n-layer">
+          <mxGeometry x="570" y="245" width="90" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="scheduling" value="SCHEDULING ENGINE" style="swimlane;horizontal=1;startSize=20;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=11;rounded=1;" vertex="1" parent="n8n-layer">
-          <mxGeometry x="30" y="220" width="280" height="150" as="geometry"/>
+          <mxGeometry x="20" y="220" width="280" height="150" as="geometry"/>
         </mxCell>
         <mxCell id="cron" value="Cron Triggers&#xa;(Daily/Weekly)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="scheduling">
           <mxGeometry x="15" y="30" width="80" height="50" as="geometry"/>
@@ -100,7 +145,7 @@
         <mxCell id="outbound-call" value="Outbound&#xa;Call (Vapi)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontSize=9;" vertex="1" parent="scheduling">
           <mxGeometry x="195" y="60" width="70" height="30" as="geometry"/>
         </mxCell>
-        <mxCell id="schedule-types" value="Weekly check-ins | Progress reviews | Motivation calls | Reminders" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="scheduling">
+        <mxCell id="schedule-types" value="Weekly check-ins | Progress reviews | Motivation calls" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="scheduling">
           <mxGeometry x="15" y="100" width="250" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="sched-arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;" edge="1" parent="scheduling" source="cron" target="check-schedule">
@@ -169,47 +214,50 @@
         <mxCell id="reppit-progress" value="progress_records&#xa;exercise_id&#xa;max_weight&#xa;personal_records" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#82b366;fontSize=9;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="reppit-tables">
           <mxGeometry x="215" y="30" width="95" height="75" as="geometry"/>
         </mxCell>
-        <mxCell id="reppit-note" value="REPPIT is source of truth. One-way sync: REPPIT to PRIMMO. Users may or may not have REPPIT accounts." style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=9;fontColor=#333333;spacing=5;" vertex="1" parent="reppit-tables">
-          <mxGeometry x="10" y="115" width="300" height="45" as="geometry"/>
+        <mxCell id="reppit-note" value="REPPIT is source of truth. One-way sync: REPPIT to PRIMMO." style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=9;fontColor=#333333;spacing=5;" vertex="1" parent="reppit-tables">
+          <mxGeometry x="10" y="115" width="300" height="35" as="geometry"/>
         </mxCell>
         <mxCell id="link-arrow" value="links" style="endArrow=classic;html=1;strokeColor=#9673a6;strokeWidth=2;dashed=1;" edge="1" parent="db-layer" source="table-connections" target="reppit-profiles">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
         <mxCell id="ext-layer" value="EXTERNAL SERVICES" style="swimlane;horizontal=1;startSize=30;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="800" y="520" width="360" height="280" as="geometry"/>
+          <mxGeometry x="800" y="520" width="500" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="twilio-box" value="TWILIO" style="swimlane;horizontal=1;startSize=20;fillColor=#F22F46;strokeColor=#C22030;fontStyle=1;fontSize=11;rounded=1;fontColor=#ffffff;" vertex="1" parent="ext-layer">
+          <mxGeometry x="20" y="40" width="150" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="twilio-wa-svc" value="WhatsApp API&#xa;$0.005-0.08/msg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#C22030;fontSize=9;fontColor=#333333;" vertex="1" parent="twilio-box">
+          <mxGeometry x="10" y="30" width="130" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="twilio-voice-svc" value="Voice (Telephony)&#xa;$0.013-0.02/min" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#C22030;fontSize=9;fontColor=#333333;" vertex="1" parent="twilio-box">
+          <mxGeometry x="10" y="70" width="130" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="vapi-box" value="VAPI.AI" style="swimlane;horizontal=1;startSize=20;fillColor=#6B5CE7;strokeColor=#5648C7;fontStyle=1;fontSize=11;rounded=1;fontColor=#ffffff;" vertex="1" parent="ext-layer">
+          <mxGeometry x="185" y="40" width="140" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="vapi-stt" value="STT (Speech-to-Text)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5648C7;fontSize=9;fontColor=#333333;" vertex="1" parent="vapi-box">
+          <mxGeometry x="10" y="25" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="vapi-tts" value="TTS (Text-to-Speech)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5648C7;fontSize=9;fontColor=#333333;" vertex="1" parent="vapi-box">
+          <mxGeometry x="10" y="55" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="vapi-ai" value="Voice AI ~$0.05/min" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5648C7;fontSize=9;fontColor=#333333;" vertex="1" parent="vapi-box">
+          <mxGeometry x="10" y="85" width="120" height="25" as="geometry"/>
         </mxCell>
         <mxCell id="airtable" value="Airtable&#xa;(FAQ Admin)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCB400;strokeColor=#B88800;fontColor=#000000;fontStyle=1;fontSize=11;" vertex="1" parent="ext-layer">
-          <mxGeometry x="20" y="50" width="100" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="airtable-desc" value="Non-technical editing, Category mgmt, Response templates" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="ext-layer">
-          <mxGeometry x="20" y="105" width="100" height="50" as="geometry"/>
+          <mxGeometry x="340" y="50" width="100" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="claude" value="Claude API&#xa;(Anthropic)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CC785C;strokeColor=#A85A3C;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="ext-layer">
-          <mxGeometry x="140" y="50" width="100" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="claude-desc" value="Haiku (fast), Sonnet (balanced), Tier 4 fallback only" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="ext-layer">
-          <mxGeometry x="140" y="105" width="100" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="vapi" value="Vapi.ai&#xa;(Voice AI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="ext-layer">
-          <mxGeometry x="250" y="50" width="90" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="vapi-desc" value="STT/TTS, Voice assistant, Tool calling, Outbound" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="ext-layer">
-          <mxGeometry x="250" y="105" width="90" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="twilio" value="Twilio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F22F46;strokeColor=#C22030;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="ext-layer">
-          <mxGeometry x="20" y="180" width="100" height="40" as="geometry"/>
-        </mxCell>
-        <mxCell id="twilio-desc" value="WhatsApp + Voice telephony" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="ext-layer">
-          <mxGeometry x="20" y="225" width="100" height="30" as="geometry"/>
+          <mxGeometry x="340" y="110" width="100" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="openai" value="OpenAI&#xa;Embeddings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#10A37F;strokeColor=#0D8060;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="ext-layer">
-          <mxGeometry x="140" y="180" width="100" height="40" as="geometry"/>
+          <mxGeometry x="20" y="180" width="100" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="openai-desc" value="Semantic search (Tier 2)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#666666;" vertex="1" parent="ext-layer">
-          <mxGeometry x="140" y="225" width="100" height="30" as="geometry"/>
+        <mxCell id="cost-summary" value="ESTIMATED COSTS (per conversation)&#xa;─────────────────────────────&#xa;WhatsApp: $0.01-0.10&#xa;Voice (5 min): $0.30-0.50&#xa;Claude (Tier 4): $0.01-0.05&#xa;Embeddings: $0.0001" style="text;html=1;strokeColor=#b85450;fillColor=#ffffff;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=9;fontColor=#333333;spacing=5;" vertex="1" parent="ext-layer">
+          <mxGeometry x="140" y="175" width="180" height="90" as="geometry"/>
         </mxCell>
         <mxCell id="linking-flow" value="USER LINKING FLOW (PRIMMO to REPPIT)" style="swimlane;horizontal=1;startSize=25;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="830" width="1120" height="130" as="geometry"/>
+          <mxGeometry x="40" y="830" width="1260" height="130" as="geometry"/>
         </mxCell>
         <mxCell id="link-step1" value="1. User says&#xa;Connect REPPIT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" vertex="1" parent="linking-flow">
           <mxGeometry x="20" y="40" width="90" height="60" as="geometry"/>
@@ -255,78 +303,66 @@
         </mxCell>
         <mxCell id="cross1" value="" style="endArrow=classic;html=1;strokeColor=#333333;strokeWidth=3;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="400" y="175" as="sourcePoint"/>
-            <mxPoint x="440" y="175" as="targetPoint"/>
+            <mxPoint x="540" y="170" as="sourcePoint"/>
+            <mxPoint x="580" y="170" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cross1b" value="" style="endArrow=classic;html=1;strokeColor=#333333;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="305" as="sourcePoint"/>
+            <mxPoint x="580" y="305" as="targetPoint"/>
           </mxGeometry>
         </mxCell>
         <mxCell id="cross2" value="Read/Write" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="500" y="480" as="sourcePoint"/>
-            <mxPoint x="500" y="520" as="targetPoint"/>
+            <mxPoint x="400" y="480" as="sourcePoint"/>
+            <mxPoint x="400" y="520" as="targetPoint"/>
           </mxGeometry>
         </mxCell>
         <mxCell id="cross3" value="API Calls" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="980" y="480" as="sourcePoint"/>
-            <mxPoint x="980" y="520" as="targetPoint"/>
+            <mxPoint x="1050" y="480" as="sourcePoint"/>
+            <mxPoint x="1050" y="520" as="targetPoint"/>
           </mxGeometry>
         </mxCell>
         <mxCell id="legend" value="LEGEND" style="swimlane;horizontal=1;startSize=20;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=11;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="1200" y="80" width="180" height="400" as="geometry"/>
+          <mxGeometry x="980" y="830" width="320" height="130" as="geometry"/>
         </mxCell>
-        <mxCell id="leg1" value="WhatsApp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#25D366;strokeColor=#128C7E;fontColor=#ffffff;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="30" width="70" height="25" as="geometry"/>
+        <mxCell id="leg1" value="Twilio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F22F46;strokeColor=#C22030;fontColor=#ffffff;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="30" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg1t" value="Twilio WhatsApp" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="32" width="90" height="20" as="geometry"/>
+        <mxCell id="leg1t" value="Telephony provider" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="75" y="30" width="90" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg2" value="Voice" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2171B5;fontColor=#ffffff;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="60" width="70" height="25" as="geometry"/>
+        <mxCell id="leg2" value="Vapi.ai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6B5CE7;strokeColor=#5648C7;fontColor=#ffffff;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="55" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg2t" value="Vapi.ai + Twilio" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="62" width="90" height="20" as="geometry"/>
+        <mxCell id="leg2t" value="Voice AI platform" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="75" y="55" width="90" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg3" value="Free Tier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="90" width="70" height="25" as="geometry"/>
+        <mxCell id="leg3" value="n8n" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="80" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg3t" value="$0 response" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="92" width="90" height="20" as="geometry"/>
+        <mxCell id="leg3t" value="We build this (workflows)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="75" y="80" width="120" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg4" value="Calculated" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="120" width="70" height="25" as="geometry"/>
+        <mxCell id="leg4" value="Webhook" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="105" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg4t" value="Formula-based" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="122" width="90" height="20" as="geometry"/>
+        <mxCell id="leg4t" value="URL endpoint we create" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="75" y="105" width="120" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg5" value="API Cost" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="150" width="70" height="25" as="geometry"/>
+        <mxCell id="leg5" value="Free ($0)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="200" y="30" width="50" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg5t" value="Claude API ($)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="152" width="90" height="20" as="geometry"/>
+        <mxCell id="leg5t" value="No API cost" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="255" y="30" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg6" value="REPPIT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="180" width="70" height="25" as="geometry"/>
+        <mxCell id="leg6" value="Paid ($)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="200" y="55" width="50" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="leg6t" value="External app data" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="182" width="90" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="leg7" value="Linking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="210" width="70" height="25" as="geometry"/>
-        </mxCell>
-        <mxCell id="leg7t" value="User connection" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
-          <mxGeometry x="85" y="212" width="90" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="leg-divider" value="" style="line;strokeColor=#666666;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="245" width="160" height="1" as="geometry"/>
-        </mxCell>
-        <mxCell id="leg-cost" value="COST OPTIMIZATION" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=10;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="255" width="160" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="cost-info" value="Tier 1-3: ~70% queries&#xa;Tier 4: ~30% queries&#xa;Est. savings: 60-70%" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=9;spacing=5;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="280" width="160" height="60" as="geometry"/>
-        </mxCell>
-        <mxCell id="phase-info" value="PHASES&#xa;Phase 1: WhatsApp&#xa;Phase 2: Voice&#xa;Phase 3: Dashboard" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=9;spacing=5;fontStyle=0;" vertex="1" parent="legend">
-          <mxGeometry x="10" y="350" width="160" height="70" as="geometry"/>
+        <mxCell id="leg6t" value="API cost" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;" vertex="1" parent="legend">
+          <mxGeometry x="255" y="55" width="60" height="20" as="geometry"/>
         </mxCell>
       </root>
     </mxGraphModel>
