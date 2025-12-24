@@ -156,7 +156,7 @@ Previous Project → Prelim → A → B → C → D → E → F → G → H → 
 ![Image: Agent architecture diagram]
 *[INSERT: Diagram showing specialized agents mapped to phases]*
 
-Here's where it gets interesting. Each phase doesn't just have a deliverable—it has a **specialized agent** designed for that phase's specific work.
+Here's where it gets interesting. Each phase has a well-defined scope, clear inputs, and explicit outputs. That's a perfect agentic candidate. So why not create one? **I built a specialized agent for each phase.**
 
 - `@designer` thinks in user stories and personas
 - `@architect` thinks in systems and trade-offs
