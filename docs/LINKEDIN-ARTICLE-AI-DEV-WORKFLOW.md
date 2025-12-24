@@ -74,6 +74,22 @@ This is where enterprise architecture thinking—specifically TOGAF's Architectu
 
 ---
 
+## The Core Principles That Guided Me
+
+Before diving into the workflow, I want to share the principles I've carried from years of work—principles that unconsciously shaped how I approached this problem. These aren't new ideas; they're battle-tested truths that finally found their place in AI-assisted development.
+
+> **[TO BE FILLED]**
+>
+> - Principle 1: ...
+> - Principle 2: ...
+> - Principle 3: ...
+> - Principle 4: ...
+> - Principle 5: ...
+
+These principles didn't come from a book. They came from late nights debugging production issues, from projects that shipped late, from watching teams struggle with handoffs. When I sat down to design a workflow for AI development, these principles were already there—waiting to be formalized.
+
+---
+
 ## Enter: The AI Development Workflow
 
 ![Image: The complete workflow diagram]
