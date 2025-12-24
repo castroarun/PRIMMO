@@ -26,6 +26,9 @@ After building a note-taking app with AI assistance—a journey I shared in my r
 
 The results surprised me.
 
+![Image: Screenshot of messy Slack threads and scattered documentation]
+*[INSERT: Screenshot showing typical "vibe coding" chaos - multiple tabs, scattered notes]*
+
 ---
 
 ## What the Retrospective Revealed
@@ -72,6 +75,9 @@ This is where enterprise architecture thinking—specifically TOGAF's Architectu
 ---
 
 ## Enter: The AI Development Workflow
+
+![Image: The complete workflow diagram]
+*[INSERT: dev-workflow-cycle.drawio - The TOGAF-inspired circular workflow]*
 
 I formulated a circular workflow inspired by TOGAF's ADM, but adapted for the realities of AI-assisted development. The key innovation: **every phase has explicit deliverables that serve as handshakes to the next phase.**
 
@@ -147,6 +153,9 @@ Previous Project → Prelim → A → B → C → D → E → F → G → H → 
 
 ## The Game Changer: Specialized Agents
 
+![Image: Agent architecture diagram]
+*[INSERT: Diagram showing specialized agents mapped to phases]*
+
 Here's where it gets interesting. Each phase doesn't just have a deliverable—it has a **specialized agent** designed for that phase's specific work.
 
 - `@designer` thinks in user stories and personas
@@ -164,6 +173,9 @@ This mirrors how real teams work—except the context transfer is instant and co
 ---
 
 ## Removing Humans from the Clutter (Not the Loop)
+
+![Image: Jira integration flow]
+*[INSERT: Screenshot of Jira board with automated status updates]*
 
 The Jira integration was the final piece. Here's what changed:
 
@@ -187,6 +199,9 @@ Review gates (Phase E) remain human-controlled. But the ceremony of ticket manag
 ---
 
 ## The Deliverable Handshake Pattern
+
+![Image: Deliverable handshake between phases]
+*[INSERT: Close-up of workflow showing deliverable boxes between phase circles]*
 
 The core pattern that makes this work:
 
@@ -247,6 +262,27 @@ If you're experimenting with AI-assisted development:
 5. **Automate the ceremony.** Reserve human attention for decisions.
 
 The age of "vibe coding" was fun. The age of structured AI development is productive.
+
+---
+
+## This Is a Living Workflow
+
+![Image: Current project using the workflow]
+*[INSERT: Screenshot of ongoing project following the workflow]*
+
+I want to be transparent: **this workflow is currently being implemented in my ongoing projects.** It's not a theoretical framework sitting in a drawer—it's being battle-tested in real development right now.
+
+The workflow itself will evolve. Each project that completes the full cycle—from Prelim retrospective back to Prelim retrospective—feeds improvements back into the process. That's the beauty of the circular design: **the arc continues, and each iteration refines the methodology.**
+
+What you're seeing here is the formulation born from the Note App retrospective. The real proof will come from what happens next.
+
+**Coming Soon:** Once the current projects ship and complete their retrospective phases, I'll publish:
+- Quantitative metrics (time saved, context-switching reduced)
+- Qualitative learnings (what worked, what didn't)
+- Workflow refinements (how the phases evolved)
+- Agent improvements (which specializations proved most valuable)
+
+Stay tuned for the post-shipment retrospective findings. The best insights come after the dust settles.
 
 ---
 
