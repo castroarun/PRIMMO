@@ -170,6 +170,12 @@ The agents aren't just different prompts. They have:
 
 This mirrors how real teams work—except the context transfer is instant and complete.
 
+> **In Simple Terms:**
+>
+> **What's an Agent?** Think of it as a specialized AI assistant with a job description. A `@designer` agent knows it should ask about users, think in journeys, and output user stories. It's not a generic chatbot—it's an AI with a role, boundaries, and expectations. You invoke it, it does its job, it hands off.
+>
+> **What's a Deliverable?** It's the receipt. The proof of work. When Phase B (Requirements) completes, it doesn't just say "done"—it produces `requirements.md`. That file is the contract between Phase B and Phase C. No file, no handshake, no moving forward. It's accountability baked into the process.
+
 ---
 
 ## Removing Humans from the Clutter (Not the Loop)
