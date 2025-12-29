@@ -1,225 +1,183 @@
-<mxfile host="app.diagrams.net" modified="2025-12-22T00:00:00.000Z" agent="Claude" version="21.0.0">
+<mxfile host="Electron" modified="2025-12-24T15:32:56.497Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" version="21.6.8" etag="499dT7TcUO5avE_MSbYp" type="device">
   <diagram name="Development Workflow Cycle" id="workflow-cycle">
-    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0" background="#FFFFFF">
+    <mxGraphModel dx="1059" dy="563" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <!-- Title -->
-        <mxCell id="title" value="PRIMMO Development Workflow Cycle" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=32;fontStyle=1;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="500" y="15" width="600" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="subtitle" value="TOGAF ADM-Inspired Circular Workflow with Phase Deliverables" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=15;fontColor=#4A5568;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="subtitle" value="TOGAF ADM-Inspired Workflow with Phase Deliverables" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=15;fontColor=#4A5568;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="500" y="55" width="600" height="28" as="geometry" />
         </mxCell>
-
-        <!-- ==================== PREVIOUS/NEXT PROJECT CIRCLES ==================== -->
-
-        <!-- Previous Project (LEFT side - above Phase I) -->
-        <mxCell id="prev-project" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#718096;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="prev-project" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#718096;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="530" y="100" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="prev-project-text" value="Previous&#xa;Project" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#4A5568;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="prev-project-text" value="Previous&#xa;Project" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#4A5568;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="532" y="112" width="66" height="46" as="geometry" />
         </mxCell>
-
-        <!-- Arrow from Previous Project to Prelim (straight line) -->
-        <mxCell id="arrow-prev-prelim" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#718096;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="prev-project" target="phase-prelim">
+        <mxCell id="arrow-prev-prelim" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#718096;endArrow=blockThin;endFill=1;" parent="1" source="prev-project" target="phase-prelim" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- Next Project (RIGHT side - above Phase A) -->
-        <mxCell id="next-project" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#718096;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="next-project" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#718096;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="992" y="100" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="next-project-text" value="Next&#xa;Project" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#4A5568;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="next-project-text" value="Next&#xa;Project" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#4A5568;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="994" y="112" width="66" height="46" as="geometry" />
         </mxCell>
-
-        <!-- Arrow from Prelim to Next Project (straight dashed line) -->
-        <mxCell id="arrow-prelim-next" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#718096;endArrow=blockThin;endFill=1;dashed=1;dashPattern=8 4;" edge="1" parent="1" source="phase-prelim" target="next-project">
+        <mxCell id="arrow-prelim-next" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#718096;endArrow=blockThin;endFill=1;dashed=1;dashPattern=8 4;" parent="1" source="phase-prelim" target="next-project" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- ==================== CENTER HUB ==================== -->
-        <mxCell id="center-outer" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F6AD55;strokeColor=#DD6B20;strokeWidth=3;" vertex="1" parent="1">
+        <mxCell id="center-outer" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F6AD55;strokeColor=#DD6B20;strokeWidth=3;" parent="1" vertex="1">
           <mxGeometry x="710" y="440" width="180" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="center-inner" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEEBC8;strokeColor=#ED8936;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="center-inner" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEEBC8;strokeColor=#ED8936;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="730" y="460" width="140" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="center-text" value="Claude&#xa;Code&#xa;Orchestration" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#744210;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="center-text" value="Claude&#xa;Code&#xa;Orchestration" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#744210;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="745" y="490" width="110" height="80" as="geometry" />
         </mxCell>
-
-        <!-- ==================== PHASE CIRCLES (115x115) ==================== -->
-
-        <!-- Prelim: Retrospective (Top Center) -->
-        <mxCell id="phase-prelim" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEB2B2;strokeColor=#C53030;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-prelim" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEB2B2;strokeColor=#C53030;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="742" y="150" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-prelim-text" value="Prelim&#xa;Retrospective" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#742A2A;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-prelim-text" value="Prelim&#xa;Retrospective" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#742A2A;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="752" y="180" width="95" height="55" as="geometry" />
         </mxCell>
-
-        <!-- A: Project Init (Top Right) -->
-        <mxCell id="phase-a" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C6F6D5;strokeColor=#276749;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-a" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C6F6D5;strokeColor=#276749;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="970" y="220" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-a-text" value="A.&#xa;Project Init&#xa;/newproject" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#22543D;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-a-text" value="A.&#xa;Project Init&#xa;/newproject" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#22543D;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="980" y="242" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- B: Requirements (Right Upper) -->
-        <mxCell id="phase-b" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=#2B6CB0;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-b" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=#2B6CB0;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="1100" y="380" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-b-text" value="B.&#xa;Requirements&#xa;@designer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#2A4365;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-b-text" value="B.&#xa;Requirements&#xa;@designer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#2A4365;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="1110" y="402" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- C: Architecture (Right Lower) -->
-        <mxCell id="phase-c" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E9D8FD;strokeColor=#6B46C1;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-c" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E9D8FD;strokeColor=#6B46C1;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="1100" y="560" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-c-text" value="C.&#xa;Architecture&#xa;@architect" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#44337A;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-c-text" value="C.&#xa;Architecture&#xa;@architect" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#44337A;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="1110" y="582" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- D: PRD & Design (Bottom Right) -->
-        <mxCell id="phase-d" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FED7E2;strokeColor=#B83280;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-d" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FED7E2;strokeColor=#B83280;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="970" y="730" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-d-text" value="D.&#xa;PRD &amp; Design&#xa;@architect" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#702459;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-d-text" value="D.&#xa;PRD &amp; Design&#xa;@architect" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#702459;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="980" y="752" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- E: Review Loop (Bottom Center) -->
-        <mxCell id="phase-e" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEFCBF;strokeColor=#B7791F;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-e" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEFCBF;strokeColor=#B7791F;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="742" y="820" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-e-text" value="E.&#xa;Review Loop&#xa;/checkprd" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#744210;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-e-text" value="E.&#xa;Review Loop&#xa;/checkprd" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#744210;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="752" y="842" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- F: Test Planning (Bottom Left) -->
-        <mxCell id="phase-f" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C6F6D5;strokeColor=#276749;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-f" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C6F6D5;strokeColor=#276749;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="510" y="730" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-f-text" value="F.&#xa;Test Planning&#xa;@qa" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#22543D;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-f-text" value="F.&#xa;Test Planning&#xa;@qa" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#22543D;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="520" y="752" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- G: Implementation (Left Lower) -->
-        <mxCell id="phase-g" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=#2B6CB0;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-g" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=#2B6CB0;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="385" y="560" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-g-text" value="G.&#xa;Build&#xa;Claude Code" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#2A4365;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-g-text" value="G.&#xa;Build&#xa;Claude Code" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#2A4365;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="395" y="582" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- H: Deployment (Left Upper) -->
-        <mxCell id="phase-h" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E9D8FD;strokeColor=#6B46C1;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-g-unit-loop" value="Unit&#xa;Tests" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#2B6CB0;strokeWidth=1;fontSize=10;fontColor=#2A4365;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="503" y="525" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="phase-g-to-unit" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#2B6CB0;endArrow=blockThin;endFill=1;entryX=0.073;entryY=0.229;entryDx=0;entryDy=0;exitX=0.736;exitY=0.047;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="phase-g" target="phase-g-unit-loop">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="475" y="570" as="sourcePoint" />
+            <mxPoint x="490" y="560" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="473" y="550" />
+              <mxPoint x="486" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase-unit-to-g" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#2B6CB0;endArrow=blockThin;endFill=1;exitX=0.779;exitY=0.94;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="phase-g-unit-loop" target="phase-g">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="495" y="580" as="sourcePoint" />
+            <mxPoint x="490" y="580" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="538" y="598" />
+              <mxPoint x="513" y="612" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase-h" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E9D8FD;strokeColor=#6B46C1;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="385" y="380" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-h-text" value="H.&#xa;Deploy&#xa;/deploy" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#44337A;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-h-text" value="H.&#xa;Deploy&#xa;/deploy" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#44337A;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="395" y="402" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- I: Manual Testing (Top Left) -->
-        <mxCell id="phase-i" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FED7E2;strokeColor=#B83280;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="phase-i" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FED7E2;strokeColor=#B83280;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="510" y="220" width="115" height="115" as="geometry" />
         </mxCell>
-        <mxCell id="phase-i-text" value="I.&#xa;Manual Test&#xa;Verify &amp; QA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#702459;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="phase-i-text" value="I.&#xa;Manual Test&#xa;Verify &amp; QA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#702459;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="520" y="242" width="95" height="70" as="geometry" />
         </mxCell>
-
-        <!-- ==================== CONNECTING ARROWS (simple curves for circular flow) ==================== -->
-
-        <!-- Prelim -> A (curved) -->
-        <mxCell id="arrow-prelim-a" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-prelim" target="phase-a">
+        <mxCell id="arrow-prelim-a" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-prelim" target="phase-a" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-prelim-a" value="RETROSPECTIVE.md&#xa;Insights &amp; Improvements" style="text;html=1;strokeColor=#C53030;fillColor=#FFF5F5;align=center;verticalAlign=middle;fontSize=11;fontColor=#742A2A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="855" y="145" width="120" height="45" as="geometry" />
+        <mxCell id="deliverable-prelim-a" value="RETROSPECTIVE.md" style="text;html=1;strokeColor=#C53030;fillColor=#FFF5F5;align=center;verticalAlign=middle;fontSize=11;fontColor=#742A2A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="840" y="117" width="133" height="41" as="geometry" />
         </mxCell>
-
-        <!-- A -> B (curved) -->
-        <mxCell id="arrow-a-b" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-a" target="phase-b">
+        <mxCell id="arrow-a-b" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-a" target="phase-b" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-a-b" value="Folder Structure&#xa;Commands, Skills&#xa;Instructions" style="text;html=1;strokeColor=#276749;fillColor=#F0FFF4;align=center;verticalAlign=middle;fontSize=11;fontColor=#22543D;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="280" width="115" height="55" as="geometry" />
+        <mxCell id="deliverable-a-b" value="Folder Structure&#xa;Commands, Skills&#xa;Instructions" style="text;html=1;strokeColor=#276749;fillColor=#F0FFF4;align=center;verticalAlign=middle;fontSize=11;fontColor=#22543D;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="1095" y="295" width="115" height="55" as="geometry" />
         </mxCell>
-
-        <!-- B -> C (curved) -->
-        <mxCell id="arrow-b-c" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-b" target="phase-c">
+        <mxCell id="arrow-b-c" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-b" target="phase-c" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-b-c" value="requirements.md&#xa;User Stories" style="text;html=1;strokeColor=#2B6CB0;fillColor=#EBF8FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#2A4365;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="deliverable-b-c" value="requirements.md&#xa;mockups/*.html" style="text;html=1;strokeColor=#2B6CB0;fillColor=#EBF8FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#2A4365;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="1180" y="490" width="110" height="45" as="geometry" />
         </mxCell>
-
-        <!-- C -> D (curved) -->
-        <mxCell id="arrow-c-d" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-c" target="phase-d">
+        <mxCell id="arrow-c-d" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-c" target="phase-d" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-c-d" value="Tech Decisions&#xa;Discovery Notes" style="text;html=1;strokeColor=#6B46C1;fillColor=#FAF5FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#44337A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="675" width="110" height="45" as="geometry" />
+        <mxCell id="deliverable-c-d" value="Tech Decisions&#xa;Architecture Diagrams" style="text;html=1;strokeColor=#6B46C1;fillColor=#FAF5FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#44337A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="1047" y="675" width="128" height="45" as="geometry" />
         </mxCell>
-
-        <!-- D -> E (curved) -->
-        <mxCell id="arrow-d-e" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-d" target="phase-e">
+        <mxCell id="arrow-d-e" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-d" target="phase-e" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-d-e" value="APP_PRD.md&#xa;*.drawio&#xa;mockups/*.html" style="text;html=1;strokeColor=#B83280;fillColor=#FFF5F7;align=center;verticalAlign=middle;fontSize=11;fontColor=#702459;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="deliverable-d-e" value="APP_PRD.md" style="text;html=1;strokeColor=#B83280;fillColor=#FFF5F7;align=center;verticalAlign=middle;fontSize=11;fontColor=#702459;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="870" y="810" width="100" height="55" as="geometry" />
         </mxCell>
-
-        <!-- E -> F (curved) -->
-        <mxCell id="arrow-e-f" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-e" target="phase-f">
+        <mxCell id="arrow-e-f" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-e" target="phase-f" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-e-f" value="Approved PRD&#xa;Jira: Done" style="text;html=1;strokeColor=#B7791F;fillColor=#FFFFF0;align=center;verticalAlign=middle;fontSize=11;fontColor=#744210;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="deliverable-e-f" value="Approved PRD&#xa;Jira: Done" style="text;html=1;strokeColor=#B7791F;fillColor=#FFFFF0;align=center;verticalAlign=middle;fontSize=11;fontColor=#744210;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="630" y="810" width="100" height="45" as="geometry" />
         </mxCell>
-
-        <!-- F -> G (curved) -->
-        <mxCell id="arrow-f-g" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-f" target="phase-g">
+        <mxCell id="arrow-f-g" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-f" target="phase-g" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-f-g" value="TEST-PLAN.csv&#xa;Acceptance Criteria" style="text;html=1;strokeColor=#276749;fillColor=#F0FFF4;align=center;verticalAlign=middle;fontSize=11;fontColor=#22543D;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="deliverable-f-g" value="TEST-PLAN.csv&#xa;Acceptance Criteria" style="text;html=1;strokeColor=#276749;fillColor=#F0FFF4;align=center;verticalAlign=middle;fontSize=11;fontColor=#22543D;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="415" y="685" width="115" height="45" as="geometry" />
         </mxCell>
-
-        <!-- G -> H (curved) -->
-        <mxCell id="arrow-g-h" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-g" target="phase-h">
+        <mxCell id="arrow-g-h" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-g" target="phase-h" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-g-h" value="Working Code&#xa;Tests Passed" style="text;html=1;strokeColor=#2B6CB0;fillColor=#EBF8FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#2A4365;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="deliverable-g-h" value="Working Code&#xa;Tests Passed" style="text;html=1;strokeColor=#2B6CB0;fillColor=#EBF8FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#2A4365;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="300" y="490" width="100" height="45" as="geometry" />
         </mxCell>
-
-        <!-- H -> I (curved) -->
-        <mxCell id="arrow-h-i" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-h" target="phase-i">
+        <mxCell id="arrow-h-i" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-h" target="phase-i" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-h-i" value="Production URL&#xa;WALKTHROUGH.md" style="text;html=1;strokeColor=#6B46C1;fillColor=#FAF5FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#44337A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="deliverable-h-i" value="Production URL&#xa;WALKTHROUGH.md" style="text;html=1;strokeColor=#6B46C1;fillColor=#FAF5FF;align=center;verticalAlign=middle;fontSize=11;fontColor=#44337A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="412" y="300" width="115" height="45" as="geometry" />
         </mxCell>
-
-        <!-- I -> Prelim (curved - completing the cycle) -->
-        <mxCell id="arrow-i-prelim" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="phase-i" target="phase-prelim">
+        <mxCell id="arrow-i-prelim" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2D3748;endArrow=blockThin;endFill=1;" parent="1" source="phase-i" target="phase-prelim" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="deliverable-i-prelim" value="Test Results&#xa;Bug Reports&#xa;DEV-CLOCK Final" style="text;html=1;strokeColor=#B83280;fillColor=#FFF5F7;align=center;verticalAlign=middle;fontSize=11;fontColor=#702459;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="627" y="145" width="110" height="55" as="geometry" />
+        <mxCell id="deliverable-i-prelim" value="RETROSPECTIVE.md" style="text;html=1;strokeColor=#B83280;fillColor=#FFF5F7;align=center;verticalAlign=middle;fontSize=11;fontColor=#702459;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="619" y="133" width="123" height="36" as="geometry" />
         </mxCell>
-
-        <!-- ==================== REVISION LOOPS ==================== -->
-
-        <!-- E back to D (PRD Revisions) -->
-        <mxCell id="arrow-revision-e-d" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D69E2E;endArrow=blockThin;endFill=1;dashed=1;dashPattern=8 4;" edge="1" parent="1" source="phase-e" target="phase-d">
+        <mxCell id="arrow-revision-e-d" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D69E2E;endArrow=blockThin;endFill=1;dashed=1;dashPattern=8 4;" parent="1" source="phase-e" target="phase-d" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="800" y="960" />
@@ -227,12 +185,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="revision-label-e-d" value="PRD&#xa;Revisions" style="text;html=1;strokeColor=none;fillColor=#FFFFF0;align=center;verticalAlign=middle;fontSize=11;fontColor=#744210;rounded=1;fontStyle=3;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="revision-label-e-d" value="PRD&#xa;Revisions" style="text;html=1;strokeColor=none;fillColor=#FFFFF0;align=center;verticalAlign=middle;fontSize=11;fontColor=#744210;rounded=1;fontStyle=3;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="875" y="942" width="75" height="35" as="geometry" />
         </mxCell>
-
-        <!-- I back to E (Test Failures - iterative loop) -->
-        <mxCell id="arrow-revision-i-e" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C53030;endArrow=blockThin;endFill=1;dashed=1;dashPattern=8 4;" edge="1" parent="1" source="phase-i" target="phase-e">
+        <mxCell id="arrow-revision-i-e" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#FEB2B2;endArrow=blockThin;endFill=1;dashed=1;dashPattern=4 4;" parent="1" source="phase-i" target="phase-e" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="568" y="360" />
@@ -241,90 +197,95 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="revision-label-i-e" value="Test Failures&#xa;Bug Fixes" style="text;html=1;strokeColor=none;fillColor=#FFF5F5;align=center;verticalAlign=middle;fontSize=11;fontColor=#742A2A;rounded=1;fontStyle=3;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="revision-label-i-e" value="Test Failures&#xa;Bug Fixes" style="text;html=1;strokeColor=none;fillColor=#FFF5F5;align=center;verticalAlign=middle;fontSize=11;fontColor=#742A2A;rounded=1;fontStyle=3;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="245" y="595" width="85" height="40" as="geometry" />
         </mxCell>
-
-        <!-- ==================== CROSS-PHASE TOOLS (Around Center) ==================== -->
-        <mxCell id="cross-tools-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#718096;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+        <mxCell id="cross-tools-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#718096;strokeWidth=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="675" y="630" width="250" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="cross-tools-title" value="Available All Phases:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#2D3748;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="cross-tools-title" value="Available All Phases:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#2D3748;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="675" y="635" width="250" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="cross-tool-1" value="MCP: Jira" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="cross-tool-1" value="MCP: Jira" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="685" y="660" width="70" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="cross-tool-2" value="MCP: GitHub" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="cross-tool-2" value="MCP: GitHub" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="765" y="660" width="80" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="cross-tool-3" value="MCP: Supabase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="cross-tool-3" value="MCP: Supabase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="855" y="660" width="65" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="cross-tool-4" value="/jirastatus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="cross-tool-4" value="/jirastatus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="710" y="692" width="80" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="cross-tool-5" value="@walkthrough" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="cross-tool-5" value="/project status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontSize=11;fontColor=#1A202C;fontStyle=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="800" y="692" width="95" height="26" as="geometry" />
         </mxCell>
-
-        <!-- ==================== LEGEND ==================== -->
-        <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7FAFC;strokeColor=#718096;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="150" width="210" height="210" as="geometry" />
+        <mxCell id="arrow-prd-deploy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D6BCFA;endArrow=blockThin;endFill=1;dashed=1;dashPattern=4 4;" edge="1" parent="1" source="phase-d" target="phase-h">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1028" y="1000" />
+              <mxPoint x="442" y="1000" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="prd-deploy-label" value="Deploy references PRD" style="text;html=1;strokeColor=none;fillColor=#FAF5FF;align=center;verticalAlign=middle;fontSize=10;fontColor=#44337A;rounded=1;fontStyle=3;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="650" y="978" width="130" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7FAFC;strokeColor=#718096;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="74" y="150" width="216" height="223" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="80" y="155" width="210" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="leg-phase" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=#2B6CB0;strokeWidth=1;" vertex="1" parent="1">
+        <mxCell id="leg-phase" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=#2B6CB0;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="95" y="188" width="24" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="leg-phase-text" value="Workflow Phase" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="leg-phase-text" value="Workflow Phase" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="128" y="188" width="120" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="leg-center" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F6AD55;strokeColor=#DD6B20;strokeWidth=1;" vertex="1" parent="1">
+        <mxCell id="leg-center" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F6AD55;strokeColor=#DD6B20;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="95" y="220" width="24" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="leg-center-text" value="Central Orchestration" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="leg-center-text" value="Central Orchestration" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="128" y="220" width="140" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="leg-deliverable" value="Deliverable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF4;strokeColor=#276749;fontSize=11;fontColor=#22543D;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="leg-deliverable" value="Deliverable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF4;strokeColor=#276749;fontSize=11;fontColor=#22543D;fontStyle=1;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="95" y="252" width="75" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="leg-deliverable-text" value="Phase Handshake" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="leg-deliverable-text" value="Phase Handshake" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="178" y="250" width="115" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="leg-arrow" value="" style="endArrow=blockThin;html=1;strokeWidth=2;strokeColor=#2D3748;endFill=1;curved=1;" edge="1" parent="1">
+        <mxCell id="leg-arrow" value="" style="endArrow=blockThin;html=1;strokeWidth=2;strokeColor=#2D3748;endFill=1;curved=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="95" y="290" as="sourcePoint" />
             <mxPoint x="165" y="290" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="leg-arrow-text" value="Flow Direction" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="leg-arrow-text" value="Flow Direction" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="178" y="278" width="100" height="24" as="geometry" />
         </mxCell>
-
-        <mxCell id="leg-revision" value="" style="endArrow=blockThin;html=1;strokeWidth=2;strokeColor=#D69E2E;endFill=1;dashed=1;dashPattern=8 4;" edge="1" parent="1">
+        <mxCell id="leg-revision" value="" style="endArrow=blockThin;html=1;strokeWidth=2;strokeColor=#D69E2E;endFill=1;dashed=1;dashPattern=8 4;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="95" y="318" as="sourcePoint" />
             <mxPoint x="165" y="318" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="leg-revision-text" value="Revision Loop" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="leg-revision-text" value="Revision Loop" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="178" y="306" width="100" height="24" as="geometry" />
         </mxCell>
-
-        <!-- Project flow legend -->
-        <mxCell id="leg-project" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#718096;strokeWidth=1;" vertex="1" parent="1">
+        <mxCell id="leg-project" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#718096;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="95" y="340" width="24" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="leg-project-text" value="Project Continuity" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" vertex="1" parent="1">
+        <mxCell id="n6HpKTHCzBb09E0uUCta-3" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="leg-project-text" target="phase-h">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-project-text" value="Project Continuity" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#1A202C;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="128" y="340" width="120" height="24" as="geometry" />
         </mxCell>
-
+        <mxCell id="n6HpKTHCzBb09E0uUCta-2" value="Insights &amp;amp; &lt;br&gt;Improvements" style="text;html=1;strokeColor=#C53030;fillColor=#FFF5F5;align=center;verticalAlign=middle;fontSize=11;fontColor=#742A2A;rounded=1;fontStyle=1;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="869" y="204" width="111" height="35" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

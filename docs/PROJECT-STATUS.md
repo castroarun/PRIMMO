@@ -19,10 +19,10 @@
 
 | Document | Status | Description |
 |----------|--------|-------------|
-| [APP_PRD.md](./APP_PRD.md) | Complete | Full product requirements |
-| [REPPIT-INTEGRATION-DESIGN.md](./REPPIT-INTEGRATION-DESIGN.md) | Complete | REPPIT integration + scheduling |
-| [UNIFIED-VOICE-WHATSAPP-DESIGN.md](./UNIFIED-VOICE-WHATSAPP-DESIGN.md) | Complete | Multi-channel architecture |
-| [RESPONSE-TIERING-DESIGN.md](./RESPONSE-TIERING-DESIGN.md) | Complete | FAQ & cost optimization |
+| [APP_PRD.md](./Design/APP_PRD.md) | Complete | Full product requirements |
+| [REPPIT-INTEGRATION-DESIGN.md](./Design/REPPIT-INTEGRATION-DESIGN.md) | Complete | REPPIT integration + scheduling |
+| [UNIFIED-VOICE-WHATSAPP-DESIGN.md](./Design/UNIFIED-VOICE-WHATSAPP-DESIGN.md) | Complete | Multi-channel architecture |
+| [RESPONSE-TIERING-DESIGN.md](./Design/RESPONSE-TIERING-DESIGN.md) | Complete | FAQ & cost optimization |
 
 ---
 
@@ -66,6 +66,30 @@
 | 5-6 | FAQ System (Tier 1-3) | Not Started |
 | 7-8 | Claude Integration (Tier 4) | Not Started |
 | 9-10 | Proactive Check-ins + REPPIT Sync | Not Started |
+
+---
+
+## Stage Completion Criteria & Deliverables
+
+| Step | Name | Deliverables | Status |
+|------|------|--------------|--------|
+| 1 | DEV-CLOCK | `docs/DEV-CLOCK.md` | ✅ Initialized |
+| 2 | PRD & Design | `docs/Design/*.md` | ✅ Complete |
+| 3 | Test Cases | Test scenarios | ⬜ Not Started |
+| 4 | Build | Source code | ⬜ Not Started |
+| 5 | Manual Testing | Test results | ⬜ Not Started |
+| 6 | Debug & Feedback | Bug fixes | ⬜ Not Started |
+| 7 | Code Walkthrough | Review notes | ⬜ Not Started |
+| 8 | Ship | Deployed app | ⬜ Not Started |
+| 9 | Time Retrospective | Final DEV-CLOCK | ⬜ Not Started |
+
+### Stage 2 - PRD & Design Checklist (Completed)
+
+- [x] Designer agent discussions concluded
+- [x] All design docs in `docs/Design/` folder
+- [x] PRD document (`APP_PRD.md`) complete
+- [x] Integration designs documented (REPPIT, Voice, Response Tiering)
+- [x] PRD reviewed and approved
 
 ---
 
