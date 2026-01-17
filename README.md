@@ -2,6 +2,24 @@
 
 An agentic AI strength coach that communicates via WhatsApp and Voice calls, providing personalized training, nutrition, and motivational support.
 
+<!-- LAUNCHPAD:START -->
+```json
+{
+  "stage": "building",
+  "progress": 30,
+  "complexity": "F",
+  "lastUpdated": "2026-01-17",
+  "targetDate": "2026-02-28",
+  "nextAction": "Build Supabase database schema",
+  "blocker": null,
+  "demoUrl": null,
+  "techStack": ["Claude API", "Supabase", "Twilio", "Vapi.ai", "n8n", "Next.js"],
+  "shipped": false,
+  "linkedinPosted": false
+}
+```
+<!-- LAUNCHPAD:END -->
+
 ## Features
 
 - **Multi-channel Communication**: WhatsApp (Twilio) + Voice Calls (Vapi.ai)
