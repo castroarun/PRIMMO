@@ -1,3 +1,58 @@
+<div align="center">
+
+# PRIMMO
+
+**Agentic AI strength coach — WhatsApp + voice, 4-tier cost-optimized routing, REPPIT integration**
+
+![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white) ![WhatsApp](https://img.shields.io/badge/WhatsApp-Twilio-25D366?logo=whatsapp&logoColor=white) ![Vapi.ai](https://img.shields.io/badge/Vapi.ai-voice-5A67D8) ![n8n](https://img.shields.io/badge/n8n-orchestration-EA4B71?logo=n8n&logoColor=white) ![Status](https://img.shields.io/badge/Status-Building-f59e0b)
+
+</div>
+
+<!-- LAUNCHPAD:START -->
+```json
+{
+  "stage": "building",
+  "progress": 25,
+  "complexity": "F",
+  "lastUpdated": "2026-04-27",
+  "targetDate": null,
+  "nextAction": "Phase 2: Voice calls via Vapi.ai",
+  "blocker": null,
+  "demoUrl": null,
+  "techStack": [
+    "Next.js",
+    "TypeScript",
+    "WhatsApp API",
+    "Voice AI"
+  ],
+  "shipped": false,
+  "linkedinPosted": false
+}
+```
+<!-- LAUNCHPAD:END -->
+
+<details>
+<summary>📚 Table of Contents</summary>
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Roadmap](#roadmap)
+- [License](#license)
+
+</details>
+
+## Features
+
+- 4-tier AI router: FAQ → semantic search → formula → Claude API (~90% cost reduction)
+- Multi-channel delivery via WhatsApp (Twilio) and voice calls (Vapi.ai)
+- Proactive scheduled check-ins and motivational outreach via n8n
+- REPPIT integration — coaches on real workout data, not generic advice
+- Vector search (RAG) over exercise corpus for semantic retrieval
+
+## Quick Start
+
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_API-Haiku/Sonnet-cc785c?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude API" />
   <img src="https://img.shields.io/badge/Supabase-Database-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
@@ -25,23 +80,7 @@
   <a href="#roadmap">Roadmap</a>
 </p>
 
-<!-- LAUNCHPAD:START -->
-```json
-{
-  "stage": "building",
-  "progress": 30,
-  "complexity": "F",
-  "lastUpdated": "2026-01-17",
-  "targetDate": "2026-02-28",
-  "nextAction": "Build Supabase database schema",
-  "blocker": null,
-  "demoUrl": null,
-  "techStack": ["Claude API", "Supabase", "Twilio", "Vapi.ai", "n8n", "Next.js"],
-  "shipped": false,
-  "linkedinPosted": false
-}
-```
-<!-- LAUNCHPAD:END -->
+
 
 ---
 
@@ -134,3 +173,31 @@ Private - All rights reserved
 <p align="center">
   <sub>Built by <a href="https://github.com/castroarun">Arun Castro</a></sub>
 </p>
+
+## Tech Stack
+
+| Component | Tech |
+|---|---|
+| Next.js | — |
+| TypeScript | — |
+| WhatsApp API | — |
+| Voice AI | — |
+
+## Roadmap
+
+- [x] Phase 1: WhatsApp + FAQ tier
+- [ ] Phase 2: Voice calls via Vapi.ai
+- [ ] Phase 3: Multi-user dashboard
+- [ ] Phase 4: Custom voice cloning
+
+## License
+
+Private — part of the Castronix portfolio.
+
+<div align="center">
+
+---
+
+<sub>Part of the <a href="https://castronix.dev">Castronix</a> portfolio · crafted with care · © 2026 Arun Castromin</sub>
+
+</div>
