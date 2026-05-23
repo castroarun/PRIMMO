@@ -1,0 +1,261 @@
+{
+  "name": "PRIMMO Proactive Check-ins",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "hourly-check",
+      "name": "Every Hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "tableId": "upcoming_checkins",
+        "filterType": "string",
+        "filterString": "scheduled_at.lte.{{ new Date(Date.now() + 3600000).toISOString() }}",
+        "returnAll": true
+      },
+      "id": "get-pending",
+      "name": "Get Pending Check-ins",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-checkins",
+              "leftValue": "={{ $json.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "has-checkins",
+      "name": "Any Check-ins?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-checkins",
+      "name": "Split Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "const checkin = $input.first().json;\n\nconst messages = {\n  workout_reminder: [\n    \"💪 Ready to crush it today?\",\n    \"🏋️ Time to get after it!\",\n    \"⚡ Your workout is waiting!\"\n  ],\n  progress_check: [\n    \"Hey! Haven't heard from you in a bit. Everything OK?\",\n    \"Just checking in - how's training going?\",\n    \"Miss you! How are the workouts going?\"\n  ],\n  motivation: [\n    \"\\\"The only bad workout is the one that didn't happen.\\\" Keep pushing! 💪\",\n    \"Remember: Progress, not perfection. You've got this! 🔥\",\n    \"Every rep counts. Every day matters. Stay consistent! 💯\"\n  ],\n  rest_day: [\n    \"Rest day reminder: Recovery is when you grow stronger. Take it easy! 😴\",\n    \"Your muscles need rest to grow. Enjoy your recovery day! 🧘\"\n  ]\n};\n\nconst typeMessages = messages[checkin.checkin_type] || messages.motivation;\nconst message = checkin.message_content || typeMessages[Math.floor(Math.random() * typeMessages.length)];\n\nreturn {\n  json: {\n    ...checkin,\n    message: message\n  }\n};"
+      },
+      "id": "generate-message",
+      "name": "Generate Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/{{ $env.TWILIO_ACCOUNT_SID }}/Messages.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "twilioApi",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "To",
+              "value": "whatsapp:{{ $json.whatsapp_phone }}"
+            },
+            {
+              "name": "From",
+              "value": "={{ $env.TWILIO_PHONE_NUMBER }}"
+            },
+            {
+              "name": "Body",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        }
+      },
+      "id": "send-checkin",
+      "name": "Send Check-in",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 200],
+      "credentials": {
+        "twilioApi": {
+          "id": "twilio-creds",
+          "name": "Twilio API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "proactive_checkins",
+        "id": "={{ $('Generate Message').first().json.id }}",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "sent",
+            "sent_at": "={{ new Date().toISOString() }}",
+            "message_content": "={{ $('Generate Message').first().json.message }}"
+          }
+        }
+      },
+      "id": "mark-sent",
+      "name": "Mark as Sent",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1560, 200],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "no-checkins",
+      "name": "No Check-ins",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [900, 400]
+    }
+  ],
+  "connections": {
+    "Every Hour": {
+      "main": [
+        [
+          {
+            "node": "Get Pending Check-ins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Pending Check-ins": {
+      "main": [
+        [
+          {
+            "node": "Any Check-ins?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any Check-ins?": {
+      "main": [
+        [
+          {
+            "node": "Split Batches",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Check-ins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Batches": {
+      "main": [
+        [
+          {
+            "node": "Generate Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Message": {
+      "main": [
+        [
+          {
+            "node": "Send Check-in",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Check-in": {
+      "main": [
+        [
+          {
+            "node": "Mark as Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark as Sent": {
+      "main": [
+        [
+          {
+            "node": "Split Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "PRIMMO",
+      "createdAt": "2025-12-29T00:00:00.000Z",
+      "updatedAt": "2025-12-29T00:00:00.000Z"
+    }
+  ],
+  "triggerCount": 1,
+  "versionId": "1"
+}

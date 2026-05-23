@@ -1,0 +1,503 @@
+{
+  "name": "PRIMMO WhatsApp Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whatsapp/incoming",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-twilio",
+      "name": "Twilio Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "primmo-whatsapp"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Twilio webhook body\nconst body = $input.first().json.body;\n\nreturn {\n  json: {\n    from: body.From,\n    to: body.To,\n    message: body.Body,\n    messageSid: body.MessageSid,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "parse-message",
+      "name": "Parse Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "tableId": "primmo_users",
+        "matchingColumns": ["whatsapp_phone"],
+        "dataToSend": "autoMapInputData",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "whatsapp_phone": "={{ $json.from }}"
+          }
+        },
+        "options": {
+          "returnAllFields": true
+        }
+      },
+      "id": "get-create-user",
+      "name": "Get/Create User",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeRpc",
+        "functionName": "match_keywords",
+        "args": "={{ JSON.stringify({ search_text: $('Parse Message').first().json.message }) }}"
+      },
+      "id": "tier1-keyword",
+      "name": "Tier 1: Keyword Match",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [900, 200],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "tier1-match",
+              "leftValue": "={{ $json.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "tier1-check",
+      "name": "Tier 1 Match?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1120, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process template variables\nconst faq = $('Tier 1: Keyword Match').first().json[0];\nconst user = $('Get/Create User').first().json;\n\nlet response = faq.response_whatsapp;\n\n// Replace template variables if profile exists\nif (faq.requires_profile && user.profile) {\n  response = response\n    .replace('{weight}', user.profile.weight_kg || '[weight not set]')\n    .replace('{protein_min}', Math.round(user.profile.weight_kg * 1.6))\n    .replace('{protein_max}', Math.round(user.profile.weight_kg * 2.2))\n    .replace('{protein_optimal}', Math.round(user.profile.weight_kg * 1.8));\n}\n\nreturn {\n  json: {\n    response: response,\n    tier: 'exact',\n    faq_id: faq.faq_id\n  }\n};"
+      },
+      "id": "tier1-response",
+      "name": "Tier 1 Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.ANTHROPIC_API_KEY }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "claude-3-5-haiku-20241022"
+            },
+            {
+              "name": "max_tokens",
+              "value": "500"
+            },
+            {
+              "name": "system",
+              "value": "You are PRIMMO, a friendly AI strength coach. You specialize in weight training, nutrition for muscle building, and motivation. Keep responses concise and actionable. Use emojis sparingly. Format for WhatsApp (markdown works)."
+            },
+            {
+              "name": "messages",
+              "value": "={{ JSON.stringify([{ role: 'user', content: $('Parse Message').first().json.message }]) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "tier4-claude",
+      "name": "Tier 4: Claude API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 400]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "claude_queries",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "user_id": "={{ $('Get/Create User').first().json.id }}",
+            "user_phone": "={{ $('Parse Message').first().json.from }}",
+            "user_message": "={{ $('Parse Message').first().json.message }}",
+            "claude_response": "={{ $json.content[0].text }}",
+            "model_used": "haiku",
+            "tokens_in": "={{ $json.usage.input_tokens }}",
+            "tokens_out": "={{ $json.usage.output_tokens }}",
+            "cost_usd": "={{ ($json.usage.input_tokens * 0.0000008 + $json.usage.output_tokens * 0.000004).toFixed(6) }}"
+          }
+        }
+      },
+      "id": "log-claude-query",
+      "name": "Log Claude Query",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1560, 400],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const claudeResponse = $('Tier 4: Claude API').first().json;\n\nreturn {\n  json: {\n    response: claudeResponse.content[0].text,\n    tier: 'claude'\n  }\n};"
+      },
+      "id": "tier4-response",
+      "name": "Tier 4 Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": []
+        },
+        "options": {}
+      },
+      "id": "merge-responses",
+      "name": "Merge Responses",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [2000, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/{{ $env.TWILIO_ACCOUNT_SID }}/Messages.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "twilioApi",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "To",
+              "value": "={{ $('Parse Message').first().json.from }}"
+            },
+            {
+              "name": "From",
+              "value": "={{ $env.TWILIO_PHONE_NUMBER }}"
+            },
+            {
+              "name": "Body",
+              "value": "={{ $json.response }}"
+            }
+          ]
+        }
+      },
+      "id": "send-whatsapp",
+      "name": "Send WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2220, 300],
+      "credentials": {
+        "twilioApi": {
+          "id": "twilio-creds",
+          "name": "Twilio API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "conversations",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "user_id": "={{ $('Get/Create User').first().json.id }}",
+            "role": "user",
+            "content": "={{ $('Parse Message').first().json.message }}",
+            "channel": "whatsapp"
+          }
+        }
+      },
+      "id": "log-user-message",
+      "name": "Log User Message",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [2440, 200],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "conversations",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "user_id": "={{ $('Get/Create User').first().json.id }}",
+            "role": "assistant",
+            "content": "={{ $('Merge Responses').first().json.response }}",
+            "channel": "whatsapp",
+            "tier_used": "={{ $('Merge Responses').first().json.tier }}"
+          }
+        }
+      },
+      "id": "log-assistant-message",
+      "name": "Log Assistant Message",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [2440, 400],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-creds",
+          "name": "Supabase PRIMMO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response></Response>",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "text/xml"
+              }
+            ]
+          }
+        }
+      },
+      "id": "respond-twilio",
+      "name": "Respond to Twilio",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2660, 300]
+    }
+  ],
+  "connections": {
+    "Twilio Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Message": {
+      "main": [
+        [
+          {
+            "node": "Get/Create User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get/Create User": {
+      "main": [
+        [
+          {
+            "node": "Tier 1: Keyword Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tier 1: Keyword Match": {
+      "main": [
+        [
+          {
+            "node": "Tier 1 Match?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tier 1 Match?": {
+      "main": [
+        [
+          {
+            "node": "Tier 1 Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tier 4: Claude API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tier 1 Response": {
+      "main": [
+        [
+          {
+            "node": "Merge Responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tier 4: Claude API": {
+      "main": [
+        [
+          {
+            "node": "Log Claude Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Claude Query": {
+      "main": [
+        [
+          {
+            "node": "Tier 4 Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tier 4 Response": {
+      "main": [
+        [
+          {
+            "node": "Merge Responses",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Responses": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Log User Message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log Assistant Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log User Message": {
+      "main": [
+        [
+          {
+            "node": "Respond to Twilio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Assistant Message": {
+      "main": [
+        [
+          {
+            "node": "Respond to Twilio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "PRIMMO",
+      "createdAt": "2025-12-29T00:00:00.000Z",
+      "updatedAt": "2025-12-29T00:00:00.000Z"
+    }
+  ],
+  "triggerCount": 1,
+  "versionId": "1"
+}

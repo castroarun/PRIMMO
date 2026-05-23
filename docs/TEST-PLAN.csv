@@ -1,6 +1,146 @@
-Test ID,Feature,Test Case,Steps,Expected Result,Priority,Status,Notes
-TC-001,Authentication,User can sign up with email,1. Navigate to signup 2. Enter email/password 3. Submit,Account created and user logged in,High,Pending,
-TC-002,Authentication,User can log in with email,1. Navigate to login 2. Enter credentials 3. Submit,User logged in and redirected to home,High,Pending,
-TC-003,Authentication,User can log out,1. Click logout button,User logged out and redirected to login,High,Pending,
-TC-004,Core Feature 1,[Test case description],[Steps],Expected result,Medium,Pending,
-TC-005,Core Feature 2,[Test case description],[Steps],Expected result,Medium,Pending,
+test_id,category,feature,test_case,expected_result,priority,status
+TC-001,Functional,WhatsApp Message Send,Send a simple text message via Twilio WhatsApp API,Message is delivered to user's WhatsApp within 5 seconds,P0,Pending
+TC-002,Functional,WhatsApp Message Receive,Receive incoming WhatsApp message via Twilio webhook,Message is received by n8n webhook and parsed correctly,P0,Pending
+TC-003,Functional,WhatsApp Message Receive,Receive message with special characters and emojis,Message content is preserved without corruption,P1,Pending
+TC-004,Functional,WhatsApp Message Receive,Receive message with media attachment (image),System handles media gracefully or informs user text-only is supported,P2,Pending
+TC-005,Functional,WhatsApp Message Send,Send message with markdown formatting,WhatsApp renders markdown correctly (bold/italic),P1,Pending
+TC-006,Functional,Tier 1 - Keyword Match,User asks 'How many reps should I do?',System matches 'reps' keyword and returns FAQ response instantly ($0 cost),P0,Pending
+TC-007,Functional,Tier 1 - Keyword Match,User asks 'what rep range is best',System matches regex pattern and returns FAQ response,P0,Pending
+TC-008,Functional,Tier 1 - Keyword Match,User asks about 'sets per exercise',System matches 'sets' keyword and returns sets FAQ,P0,Pending
+TC-009,Functional,Tier 1 - Keyword Match,User asks 'how long should I rest between sets',System matches 'rest' and 'between sets' keywords,P0,Pending
+TC-010,Functional,Tier 1 - Keyword Match,User asks about 'protein intake',System matches 'protein' keyword from nutrition category,P0,Pending
+TC-011,Functional,Tier 1 - Keyword Match,User asks 'how much sleep do I need',System matches 'sleep' keyword from recovery category,P1,Pending
+TC-012,Functional,Tier 1 - Keyword Match,User sends /help command,System handles command and returns help text,P1,Pending
+TC-013,Functional,Tier 1 - Keyword Match,User sends /stats command,System handles command and returns user statistics,P1,Pending
+TC-014,Functional,Tier 1 - Keyword Match,User sends /pr command,System handles command and returns personal records,P1,Pending
+TC-015,Functional,Tier 1 - Keyword Match,FAQ match updates usage_count in faq_entries table,usage_count increments by 1 after successful match,P2,Pending
+TC-016,Functional,Tier 2 - Semantic Search,User asks 'what number of repetitions should I aim for',System finds semantic match to reps FAQ (similarity >0.75),P0,Pending
+TC-017,Functional,Tier 2 - Semantic Search,User asks rephrased protein question 'daily protein requirements',System matches to protein FAQ via embedding similarity,P0,Pending
+TC-018,Functional,Tier 2 - Semantic Search,User asks semantically similar but not exact match question,System returns FAQ response when similarity >0.75 threshold,P0,Pending
+TC-019,Functional,Tier 2 - Semantic Search,User asks question with similarity <0.75,System passes to Tier 3 instead of returning low-confidence match,P1,Pending
+TC-020,Functional,Tier 2 - Semantic Search,Semantic search returns top 5 matches ordered by similarity,Results are correctly ordered by cosine similarity score,P1,Pending
+TC-021,Functional,Tier 2 - Semantic Search,Semantic search only returns active FAQ entries,Inactive FAQs are not included in semantic search results,P2,Pending
+TC-022,Functional,Tier 3 - BMR Calculation,User asks 'what is my BMR' with complete profile,System calculates BMR using Mifflin-St Jeor equation correctly,P0,Pending
+TC-023,Functional,Tier 3 - BMR Calculation,Male user 80kg 180cm 30yo requests BMR,System returns BMR = 10*80 + 6.25*180 - 5*30 + 5 = 1780 calories,P0,Pending
+TC-024,Functional,Tier 3 - BMR Calculation,Female user 60kg 165cm 25yo requests BMR,System returns BMR = 10*60 + 6.25*165 - 5*25 - 161 = 1396 calories,P0,Pending
+TC-025,Functional,Tier 3 - TDEE Calculation,User asks 'what is my TDEE' with moderate activity level,System calculates TDEE = BMR * 1.55 (moderate multiplier),P0,Pending
+TC-026,Functional,Tier 3 - TDEE Calculation,User with sedentary activity level requests TDEE,System uses 1.2 multiplier for sedentary level,P1,Pending
+TC-027,Functional,Tier 3 - TDEE Calculation,User with very_active activity level requests TDEE,System uses 1.9 multiplier for very active level,P1,Pending
+TC-028,Functional,Tier 3 - Protein Calculation,User asks 'how much protein should I eat' with weight 75kg,System returns protein range 120-165g (75 * 1.6 to 75 * 2.2),P0,Pending
+TC-029,Functional,Tier 3 - Protein Calculation,Protein calculation with decimal weight 72.5kg,System correctly calculates 116-160g protein range,P1,Pending
+TC-030,Functional,Tier 3 - Target Calories,User with 'lose' goal requests calorie target,System returns TDEE - 500 calories for weight loss,P1,Pending
+TC-031,Functional,Tier 3 - Target Calories,User with 'gain' goal requests calorie target,System returns TDEE + 300 calories for lean bulk,P1,Pending
+TC-032,Functional,Tier 3 - Target Calories,User with 'maintain' goal requests calorie target,System returns TDEE with no adjustment,P1,Pending
+TC-033,Functional,Tier 3 - Template Variables,FAQ response with {profile.weight} variable is processed,Variable is replaced with actual user weight from profile,P0,Pending
+TC-034,Functional,Tier 3 - Template Variables,FAQ response with {calc:protein_min} variable is processed,Variable is replaced with calculated protein minimum,P0,Pending
+TC-035,Functional,Tier 3 - Template Variables,FAQ with conditional {#if profile.weight} block - profile exists,Conditional content is included in response,P1,Pending
+TC-036,Functional,Tier 3 - Template Variables,FAQ with conditional {#if profile.weight} block - no profile,Conditional content is removed from response,P1,Pending
+TC-037,Functional,Tier 4 - Claude API,Complex coaching question sent to Claude API,Claude responds with personalized coaching advice,P0,Pending
+TC-038,Functional,Tier 4 - Claude API,Question requiring conversation context,Claude receives recent conversation history for context,P0,Pending
+TC-039,Functional,Tier 4 - Claude API,Motivational/emotional support question,Claude provides empathetic motivational response,P1,Pending
+TC-040,Functional,Tier 4 - Claude API,Claude API call uses Haiku model by default,API call specifies claude-3-haiku model for cost efficiency,P1,Pending
+TC-041,Functional,Tier 4 - Claude API,Complex question escalates to Sonnet model,System uses Sonnet for queries requiring deeper reasoning,P2,Pending
+TC-042,Functional,Tier 4 - Claude API,Response latency is under 3 seconds,Claude API responds within acceptable latency threshold,P1,Pending
+TC-043,Functional,Claude Query Logging,Every Claude API call is logged to claude_queries table,Log entry contains user_id user_phone user_message claude_response,P0,Pending
+TC-044,Functional,Claude Query Logging,Claude query log captures model_used field,Log correctly identifies haiku or sonnet model,P0,Pending
+TC-045,Functional,Claude Query Logging,Claude query log captures tokens_in and tokens_out,Token counts are accurately recorded for cost tracking,P0,Pending
+TC-046,Functional,Claude Query Logging,Claude query log captures cost_usd calculation,Cost is calculated correctly based on model and token usage,P1,Pending
+TC-047,Functional,Claude Query Logging,Claude query log captures latency_ms,Response latency is recorded in milliseconds,P1,Pending
+TC-048,Functional,Claude Query Logging,New log entries have reviewed=false by default,Unreviewed queries are flagged for daily digest,P0,Pending
+TC-049,Functional,Daily Digest Alerts,Daily digest runs at 9:00 AM scheduled time,n8n cron trigger executes at configured time,P0,Pending
+TC-050,Functional,Daily Digest Alerts,Digest queries unreviewed Claude calls from last 24 hours,SQL query correctly filters by reviewed=false AND created_at > -24h,P0,Pending
+TC-051,Functional,Daily Digest Alerts,Digest message is sent to admin WhatsApp number,Admin receives formatted digest via Twilio,P0,Pending
+TC-052,Functional,Daily Digest Alerts,Digest includes count of Claude calls,Message shows total number of unreviewed queries,P1,Pending
+TC-053,Functional,Daily Digest Alerts,Digest includes list of user questions,Message shows truncated list of questions asked,P1,Pending
+TC-054,Functional,Daily Digest Alerts,Digest includes total cost summary,Message shows aggregate cost of Claude API calls,P1,Pending
+TC-055,Functional,Daily Digest Alerts,No digest sent when zero unreviewed queries,Workflow exits early without sending message,P2,Pending
+TC-056,Functional,Admin UI - FAQ Entry,Admin types natural language coaching knowledge,Claude Haiku extracts question/keywords/category/response,P0,Pending
+TC-057,Functional,Admin UI - FAQ Entry,Extracted FAQ entry shows preview to admin,Admin sees parsed question keywords category WhatsApp response Voice response,P0,Pending
+TC-058,Functional,Admin UI - FAQ Entry,Admin can edit extracted FAQ before saving,Edit functionality allows modification of all fields,P0,Pending
+TC-059,Functional,Admin UI - FAQ Entry,Admin saves FAQ entry to faq_entries table,Entry is inserted with all required fields populated,P0,Pending
+TC-060,Functional,Admin UI - FAQ Entry,Embedding is generated for new FAQ entry,knowledge_embeddings table receives new vector embedding,P0,Pending
+TC-061,Functional,Admin UI - FAQ Entry,Admin can add keywords to extracted entry,Keywords array can be modified before save,P1,Pending
+TC-062,Functional,Admin UI - FAQ Entry,Category dropdown shows all valid categories,Options include training nutrition recovery motivation general,P1,Pending
+TC-063,Functional,Admin UI - FAQ Entry,Voice response is generated for new entry,response_voice field is populated with conversational version,P1,Pending
+TC-064,Functional,Admin UI - Query Review,Admin sees list of unreviewed Claude queries,Query list displays user_message claude_response timestamp cost,P0,Pending
+TC-065,Functional,Admin UI - Query Review,Admin can mark query as reviewed,reviewed=true and reviewed_at timestamp is set,P0,Pending
+TC-066,Functional,Admin UI - Query Review,Admin can add query to FAQ directly,One-click creates FAQ entry from Claude response,P0,Pending
+TC-067,Functional,Admin UI - Query Review,Admin can dismiss query (keep for Claude),Query marked as reviewed without adding to FAQ,P1,Pending
+TC-068,Functional,Admin UI - Query Review,Admin can add review notes to query,review_notes field is updated in claude_queries,P2,Pending
+TC-069,Functional,Admin UI - Query Review,FAQ candidates view shows questions asked 3+ times,faq_candidates view groups and counts repeated questions,P1,Pending
+TC-070,Functional,REPPIT Integration,User requests connection code via WhatsApp,System generates unique 6-character code and stores in user_connections,P0,Pending
+TC-071,Functional,REPPIT Integration,Connection code is unique across all users,Database constraint prevents duplicate codes,P0,Pending
+TC-072,Functional,REPPIT Integration,User enters code in REPPIT app,REPPIT validates code and links reppit_user_id to primmo_user_id,P0,Pending
+TC-073,Functional,REPPIT Integration,Connection status changes from pending to connected,status field updates and connected_at timestamp is set,P0,Pending
+TC-074,Functional,REPPIT Integration,Connected user profile data is accessible,PRIMMO can read REPPIT profiles table for body stats and goals,P0,Pending
+TC-075,Functional,REPPIT Integration,Connected user workout history is accessible,PRIMMO can read workout_sessions from last 30 days,P1,Pending
+TC-076,Functional,REPPIT Integration,Connected user PRs are accessible,PRIMMO can read personal records for system prompt context,P1,Pending
+TC-077,Functional,REPPIT Integration,User can disconnect REPPIT account,status changes to disconnected and data access is revoked,P1,Pending
+TC-078,Functional,REPPIT Integration,Unconnected user falls back to primmo_user_profile,Standalone profile data is used when REPPIT not connected,P1,Pending
+TC-079,Functional,Proactive Check-ins,Workout reminder scheduled for training days,proactive_checkins entry created with checkin_type='workout_reminder',P1,Pending
+TC-080,Functional,Proactive Check-ins,Progress check triggered after 3 days inactive,System detects inactivity and schedules check-in message,P1,Pending
+TC-081,Functional,Proactive Check-ins,Weekly summary sent on Sunday evening,Scheduled digest of weekly activity is sent to user,P2,Pending
+TC-082,Functional,Proactive Check-ins,Random motivation messages sent 2-3x per week,Motivational messages scheduled at random intervals,P2,Pending
+TC-083,Functional,Proactive Check-ins,Check-in message sent via WhatsApp,sent_at timestamp updated when message is delivered,P1,Pending
+TC-084,Functional,Proactive Check-ins,Check-in status changes from pending to sent,status field updates after successful delivery,P1,Pending
+TC-085,Functional,User Management,New WhatsApp user is created on first message,primmo_users entry created with whatsapp_phone,P0,Pending
+TC-086,Functional,User Management,Existing user is recognized by phone number,System retrieves existing user_id without creating duplicate,P0,Pending
+TC-087,Functional,User Management,Conversation is logged to conversations table,Each message/response pair stored with user_id role content tier_used,P0,Pending
+TC-088,Functional,User Management,Tier used is tracked in conversation log,tier_used field shows exact/semantic/calculated/claude,P1,Pending
+TC-089,Integration,n8n to Supabase,n8n workflow inserts data into Supabase tables,Data is successfully written using service role credentials,P0,Pending
+TC-090,Integration,n8n to Supabase,n8n workflow reads data from Supabase tables,Query results are correctly returned to workflow,P0,Pending
+TC-091,Integration,n8n to Supabase,n8n executes Supabase RPC function match_knowledge,Vector similarity search returns expected results,P0,Pending
+TC-092,Integration,n8n to Supabase,n8n executes get_claude_digest function,Unreviewed queries are returned for daily digest,P1,Pending
+TC-093,Integration,n8n to Twilio,n8n receives webhook from Twilio WhatsApp,Incoming message triggers n8n workflow execution,P0,Pending
+TC-094,Integration,n8n to Twilio,n8n sends WhatsApp message via Twilio API,Outbound message is delivered to user phone number,P0,Pending
+TC-095,Integration,n8n to Twilio,Twilio sandbox number handles messages correctly,Test number processes both inbound and outbound in sandbox mode,P0,Pending
+TC-096,Integration,n8n to Twilio,Twilio message delivery status is tracked,Delivery callbacks update message status,P2,Pending
+TC-097,Integration,n8n to Claude API,n8n HTTP request node calls Claude API successfully,API response is received with valid completion,P0,Pending
+TC-098,Integration,n8n to Claude API,Claude API receives correct system prompt,System prompt includes user profile and context,P0,Pending
+TC-099,Integration,n8n to Claude API,Claude API receives conversation history,Recent messages are included for context,P0,Pending
+TC-100,Integration,n8n to Claude API,Claude API error is handled gracefully,Workflow continues with fallback response on API failure,P1,Pending
+TC-101,Integration,Admin UI to Supabase,Admin dashboard authenticates with Supabase,Auth session established with appropriate permissions,P0,Pending
+TC-102,Integration,Admin UI to Supabase,Dashboard reads FAQ entries from Supabase,faq_entries data displayed in admin interface,P0,Pending
+TC-103,Integration,Admin UI to Supabase,Dashboard writes new FAQ entry to Supabase,Insert operation succeeds with all fields,P0,Pending
+TC-104,Integration,Admin UI to Supabase,Dashboard updates existing FAQ entry,Update operation modifies correct record,P1,Pending
+TC-105,Integration,Admin UI to Supabase,Dashboard reads claude_queries for review,Unreviewed queries displayed in review interface,P0,Pending
+TC-106,Integration,Admin UI to Supabase,Dashboard reads usage analytics,Stats queries return message counts and tier distribution,P1,Pending
+TC-107,Integration,Embedding Generation,New FAQ entry triggers embedding generation,all-MiniLM-L6-v2 384-dimension vector is created,P0,Pending
+TC-108,Integration,Embedding Generation,User message embedding is generated for search,Query embedding matches dimension of stored embeddings,P0,Pending
+TC-109,Integration,Embedding Generation,pgvector ivfflat index is used for search,Index scan is used instead of sequential scan,P1,Pending
+TC-110,Edge Case,Empty Message,User sends empty/whitespace-only message,System responds with prompt to ask a question,P0,Pending
+TC-111,Edge Case,Empty Message,User sends message with only emojis,System handles gracefully without crashing,P1,Pending
+TC-112,Edge Case,Rate Limiting,User sends 10+ messages in rapid succession,System queues or rate-limits responses appropriately,P1,Pending
+TC-113,Edge Case,Rate Limiting,Twilio API rate limit is reached,System handles 429 error and retries with backoff,P1,Pending
+TC-114,Edge Case,Rate Limiting,Claude API rate limit is reached,System returns friendly error message to user,P1,Pending
+TC-115,Edge Case,Offline/Connectivity,Supabase connection times out,n8n workflow handles timeout with retry logic,P1,Pending
+TC-116,Edge Case,Offline/Connectivity,Claude API connection fails,System falls back to cached FAQ or error message,P1,Pending
+TC-117,Edge Case,Offline/Connectivity,Twilio webhook fails to reach n8n,Messages are queued and retried by Twilio,P2,Pending
+TC-118,Edge Case,Invalid User Input,User sends extremely long message (>10000 chars),Message is truncated or rejected with friendly error,P1,Pending
+TC-119,Edge Case,Invalid User Input,User sends message with SQL injection attempt,Input is sanitized and does not affect database,P0,Pending
+TC-120,Edge Case,Invalid User Input,User sends message with XSS script tags,Input is escaped before storage and display,P0,Pending
+TC-121,Edge Case,Invalid User Input,User sends message in non-English language,System responds in English or detects language,P2,Pending
+TC-122,Edge Case,Profile Data Missing,User asks for BMR without weight in profile,System prompts user to provide weight or connect REPPIT,P0,Pending
+TC-123,Edge Case,Profile Data Missing,User asks for TDEE without activity level set,System uses default moderate activity or prompts for input,P1,Pending
+TC-124,Edge Case,Profile Data Missing,User asks for protein without weight set,System provides general recommendation or prompts for weight,P0,Pending
+TC-125,Edge Case,Profile Data Missing,Personalized FAQ template missing required profile field,Conditional block is hidden and generic response shown,P1,Pending
+TC-126,Edge Case,Profile Data Missing,REPPIT connected but profile incomplete,System falls back to available data or prompts for missing fields,P1,Pending
+TC-127,Edge Case,Concurrent Users,Multiple users message simultaneously,All messages processed without data leakage between users,P0,Pending
+TC-128,Edge Case,Concurrent Users,Same user sends multiple messages before response,Messages are queued and processed in order,P1,Pending
+TC-129,Edge Case,Database Constraints,Attempt to create duplicate whatsapp_phone,Unique constraint prevents duplicate and returns existing user,P0,Pending
+TC-130,Edge Case,Database Constraints,Attempt to create duplicate connection_code,System generates new unique code on collision,P1,Pending
+TC-131,Edge Case,Calculation Edge Cases,User weight is 0 or negative,System rejects invalid weight with error message,P1,Pending
+TC-132,Edge Case,Calculation Edge Cases,User age is unreasonable (>120 or <10),System validates age range and prompts for correction,P2,Pending
+TC-133,Edge Case,Calculation Edge Cases,User height is in wrong units (feet vs cm),System detects anomaly and prompts for clarification,P2,Pending
+TC-134,Edge Case,FAQ Priority,Multiple FAQs match same keywords,Higher priority FAQ is selected (ORDER BY priority DESC),P1,Pending
+TC-135,Edge Case,FAQ Active Flag,Inactive FAQ entry is not matched,WHERE active=true filter excludes disabled FAQs,P1,Pending
+TC-136,Performance,Response Latency,Tier 1 exact match responds in <100ms,Keyword matching completes within latency budget,P0,Pending
+TC-137,Performance,Response Latency,Tier 2 semantic match responds in <200ms,Embedding search completes within latency budget,P0,Pending
+TC-138,Performance,Response Latency,Tier 3 calculation responds in <50ms,Formula calculation completes within latency budget,P1,Pending
+TC-139,Performance,Response Latency,Tier 4 Claude responds in <3 seconds,API call completes within acceptable latency,P0,Pending
+TC-140,Performance,Cost Tracking,Total Claude API cost matches expected for message volume,Cost tracking accurately reflects actual API charges,P1,Pending
+TC-141,Security,Data Protection,WhatsApp phone numbers are not exposed in logs,Sensitive PII is redacted from application logs,P0,Pending
+TC-142,Security,Data Protection,Row Level Security is enabled on all tables,RLS policies restrict data access appropriately,P0,Pending
+TC-143,Security,Data Protection,Service role credentials are not exposed in UI,API keys are server-side only,P0,Pending
+TC-144,Security,Authentication,Admin UI requires authentication,Unauthenticated requests are rejected,P0,Pending
+TC-145,Security,Authentication,REPPIT connection requires valid user session,Cross-app linking validates both sides,P1,Pending
